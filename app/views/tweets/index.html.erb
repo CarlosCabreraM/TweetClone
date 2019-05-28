@@ -1,28 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Tweets</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Content</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+ <% @tweets.each do |tweet| %>
+  <div class="card" style="width: 100%;">
+    <div class="card-header " style="background-color: #e3f2fd;"><%= tweet.title %> </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item font-weight-bold text-center"><%=" #{tweet.content} " %></li>
+        <div style = "padding: 5px;">
+        <%= link_to 'Show',tweet, class:"btn btn-primary btn-sm"  %>
+        <%= link_to 'Edit', edit_tweet_path(tweet), class:"btn btn-primary btn-sm" %>
+        <%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-primary btn-sm" %>
+        </div>
+      </ul>
+  </div>
+  <br>
+<% end %>
 
-  <tbody>
-    <% @tweets.each do |tweet| %>
-      <tr>
-        <td><%= tweet.content %></td>
-        <td><%= tweet.content %></td>
-        <td><%= link_to 'Show', tweet %></td>
-        <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
-        <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Tweet', new_tweet_path %>
+<%= link_to 'Nuevo tweet', new_tweet_path %>
